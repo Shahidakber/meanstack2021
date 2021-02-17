@@ -17,5 +17,15 @@ for(let wd of words)
         dic[wd]=1;
     }
 }
-
+elements=[];
 console.log(dic);
+for(let key in dic)
+{
+    elements.push([dic[key],key]);
+}
+console.log(elements);
+elements.sort((o1,o2)=>o1<o2?1:-1);
+console.log(elements);
+console.log(elements[0]);
+
+
