@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>welcome</h1>
+    <table>
+        <tr>
+            <td>User Id</td>
+            <td><input id="uid" type="text"></td>
+        </tr>
+        <tr>
+            <td>Id</td>
+            <td><input id="id"  type="text" ></td>
+        </tr>
+        <tr>
+            <td>Title</td>
+            <td><input id="title" type="text"></td>
+        </tr>
+        <tr>
+            <td>Body</td>
+            <td><input id="body" type="text"></td>
+        </tr>
+        <button onclick="createPost()">Create Post</button>
+
+
+    </table>
+    
+    
+    
+
+   
+ 
+</body>
+<script>
+var request=new XMLHttpRequest()
+request.open("post","https://jsonplaceholder.typicode.com/posts")
+
+function createPost()
+{
+    uid=document.querySelector("#uid")
+    id=document.querySelector("#id")
+    title=document.querySelector("#title")
+    body=document.querySelector("#body")
+    data={"UserId":uid,"id":id,"title":title,"body":body}
+
+
+    request.send(data)
+    request.onreadystatechange=()=>{
+    if(request.readyState==4){
+        if((request.status>=200)&(request.status<300))
+        {
+        alert("sucess,status ="+request.status)
+        }
+        else{
+            alert("failed")
+        }
+    }
+}
+
+}
+
+
+
+
+
+
+</script>
+</html>

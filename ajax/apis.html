@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>welcome</h1>
+    <button onclick="getPosts()">fetch all</button>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">User ID</th>
+            <th scope="col">ID</th>
+            <th scope="col">Title</th>
+            <th scope="col">Body</th>
+          </tr>
+        </thead>
+        <tbody id=data></tbody>
+</body>
+<script>
+
+var request=new XMLHttpRequest()
+request.open("get","https://jsonplaceholder.typicode.com/posts/1")//have to pass 2 argument method and url
+function getPosts()
+{
+    request.send()
+}
+
+
+request.onreadystatechange=()=>{
+    if(request.readyState==4){
+        if((request.status>=200)&(request.status<300))
+        {
+           var result=JSON.parse(request.responseText)
+        //    console.log(result);
+           var html_data=""
+           html_data=html_data+"<tr> <td>"+result.userId+"</td> <td>"+result.id+"</td><td>"+result.title+"</td><td>"+result.body+"</td></tr>"
+           document.querySelector("#data").innerHTML=html_data
+        }
+        else{
+            alert("failed")
+        }
+    }
+}
+
+
+
+
+</script>
+</html>
